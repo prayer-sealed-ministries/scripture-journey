@@ -1,22 +1,18 @@
-name: Deploy To GitHub Pages
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: pages
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,21 +27,14 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build Static Site
-        run: npm run build
+      - name: Generate Prisma client
+        run: npx prisma generate
 
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
+      - name: Lint
+        run: npm run lint
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy To Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Test
+        run: npm test
