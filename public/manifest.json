@@ -2,6 +2,7 @@
   "name": "Scripture Journey",
   "short_name": "Scripture Journey",
   "description": "Explore how the promises, prophecies, and story of Scripture point to Jesus.",
+  "id": "/",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
