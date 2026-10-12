@@ -32,11 +32,11 @@ Each lesson connects:
 ## Quick Links
 
 <p align="center">
-  🌐 <a href="https://www.scripturejourney.com/">Live Demo</a> &nbsp;|&nbsp;
-  📚 <a href="https://www.scripturejourney.com/prophecies">Browse Lessons</a> &nbsp;|&nbsp;
-  🗺️ <a href="https://www.scripturejourney.com/map">Prophecy Map</a> &nbsp;|&nbsp;
-  ⏳ <a href="https://www.scripturejourney.com/timeline">Timeline</a> &nbsp;|&nbsp;
-  🧠 <a href="https://www.scripturejourney.com/quiz">Quiz</a>
+  🌐 <a href="https://scripture.prayersealed.org/">Live Demo</a> &nbsp;|&nbsp;
+  📚 <a href="https://scripture.prayersealed.org/prophecies">Browse Lessons</a> &nbsp;|&nbsp;
+  🗺️ <a href="https://scripture.prayersealed.org/map">Prophecy Map</a> &nbsp;|&nbsp;
+  ⏳ <a href="https://scripture.prayersealed.org/timeline">Timeline</a> &nbsp;|&nbsp;
+  🧠 <a href="https://scripture.prayersealed.org/quiz">Quiz</a>
 </p>
 
 ---
@@ -223,3 +223,16 @@ Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc. Used for educational and de
 ## Mission
 
 Scripture Journey exists to help people explore Scripture thoughtfully and reverently — and to see how the entire biblical story points to Jesus.
+
+## Ministry Domain Setup
+
+The intended production address is `https://scripture.prayersealed.org`.
+The app is configured for Render; a GitHub Pages `CNAME` file is not used.
+
+1. In the existing Render web service, open Settings → Custom Domains and add `scripture.prayersealed.org`.
+2. In GoDaddy's `prayersealed.org` DNS zone, set a CNAME named `scripture` to the exact service hostname Render displays (ending in `.onrender.com`). Do not point it to GitHub Pages.
+3. Verify the custom domain in Render and wait for its HTTPS certificate.
+4. Set the Render environment variable `NEXTAUTH_URL=https://scripture.prayersealed.org` and redeploy; update any configured authentication callback allowlists as needed.
+5. Verify the homepage, lessons, copied lesson links, and sign-in on the new domain before redirecting the old address.
+
+Browser-local progress and installed PWAs belong to their original origin and do not automatically migrate. Keep the old domain accessible until any required progress migration has been handled.
