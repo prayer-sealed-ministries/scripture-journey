@@ -20,7 +20,7 @@ export default function CopyVerseLink({ lesson, size = 'md' }: Props) {
 
     clearTimeout(timerRef.current)
 
-    const url = `https://www.scripturejourney.com/lessons/${lesson.slug}`
+    const url = `https://scripture.prayersealed.org/lessons/${lesson.slug}`
     const text = `${lesson.title}\n${lesson.otReference} → ${lesson.ntReference}\n${url}`
 
     const ok = await safeCopyText(text)
