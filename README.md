@@ -41,6 +41,21 @@ Each lesson connects:
 
 ---
 
+## Part of a larger path
+
+Scripture Journey is **Step 2 — Understand** in the Scripture & ministry path of [Prayer Sealed Ministries, Inc.](https://prayersealed.org), built by [Paul Clark](https://github.com/systemslibrarian). It is where seeing Jesus at the center of all Scripture begins. If you're new to faith, the path begins with **[Gospel Journey](https://systemslibrarian.github.io/gospel-journey/)** — coming to know Jesus Christ as Lord and Savior.
+
+| # | Stage | Project |
+|---|---|---|
+| 1 | Believe | [Gospel Journey](https://systemslibrarian.github.io/gospel-journey/) · [repo](https://github.com/systemslibrarian/gospel-journey) |
+| **2** | **Understand** | **Scripture Journey** ← you are here |
+| 3 | Remember | [Hide in Heart](https://hideinheart.com) · [repo](https://github.com/systemslibrarian/HideInHeart) |
+| 4 | Discern | [His Will Guide](https://hiswillguide.com) · [repo](https://github.com/systemslibrarian/hiswillguide) |
+| 5 | Intercede | [Prayer Sealed](https://prayersealed.org) |
+| 6 | Pass It On | My Life With Christ *(in development)* |
+
+---
+
 ## Why Scripture Journey Exists
 
 Many Bible tools help people read Scripture, but fewer help them trace how the entire biblical story points to Christ.
