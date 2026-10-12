@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Scripture Journey",
   description:
     "Explore how the entire Bible points to Jesus through 202 prophecy-centered lessons inspired by Luke 24:27.",
-  metadataBase: new URL("https://scripturejourney.com"),
+  metadataBase: new URL("https://scripture.prayersealed.org"),
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Scripture Journey",
     description:
       "Explore how the entire Bible points to Jesus through 202 prophecy-centered lessons inspired by Luke 24:27.",
-    url: "https://scripturejourney.com",
+    url: "https://scripture.prayersealed.org",
     siteName: "Scripture Journey",
     images: [
       {
