@@ -86,6 +86,12 @@ export default function RootLayout({
               Sources and Methodology
             </Link>
           </div>
+          <div className="mt-3">
+            Part of{" "}
+            <a href="https://prayersealed.org/" className="underline decoration-[#bba989] underline-offset-4 hover:text-[#7e622a]">
+              Prayer Sealed Ministries
+            </a>
+          </div>
         </footer>
 
         <ServiceWorkerRegistration />
