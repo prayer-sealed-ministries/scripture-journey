@@ -83,6 +83,16 @@ try {
     await page.getByRole('button', { name: 'Close menu', exact: true }).click()
     assert.equal(await page.getByRole('navigation', { name: 'Mobile navigation', exact: true }).count(), 0)
 
+    // Pointer dismissal must not break native keyboard activation.
+    await page.getByRole('button', { name: 'Open menu', exact: true }).press('Enter')
+    await page.getByRole('navigation', { name: 'Mobile navigation', exact: true }).waitFor()
+    await page.getByRole('button', { name: 'Close menu', exact: true }).press('Space')
+    await page.getByRole('navigation', { name: 'Mobile navigation', exact: true }).waitFor({ state: 'detached' })
+    await page.getByRole('button', { name: 'Open menu', exact: true }).click()
+    await page.getByRole('navigation', { name: 'Mobile navigation', exact: true }).waitFor()
+    await page.getByText(/Progress is saved only in this browser/).click()
+    await page.getByRole('navigation', { name: 'Mobile navigation', exact: true }).waitFor({ state: 'detached' })
+
     for (const route of ['prophecies/', 'map/', 'timeline/', 'sources/']) {
       assert.equal((await page.goto(url(route))).status(), 200, route)
       await page.locator('main').waitFor()
