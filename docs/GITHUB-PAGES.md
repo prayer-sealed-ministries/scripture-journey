@@ -36,3 +36,21 @@ asset, link, service-worker and manifest paths. Preview on a root localhost orig
 
 The existing CI workflow only validates; the static build addition does **not**
 enable Pages, change DNS, deploy, or change the live Render database.
+
+
+## Real-browser regression check
+
+CI installs the exact Playwright version from `package-lock.json` and its matching
+Chromium, serves the freshly built `out/` on loopback, and runs
+`npm run test:static:browser -- http://127.0.0.1:4173/`. The script refuses nonlocal
+URLs. It checks mobile home-to-lesson navigation, direct lesson loading, completion
+and dashboard persistence, a ten-question quiz and retake/reload behavior, and an
+independent service-worker-enabled offline revisit of a loaded lesson. It does not
+claim every lesson is cached offline. Each scenario saves a trace; failures also
+save a screenshot. All data is synthetic in fresh browser contexts. CI does not
+publish the artifact or access the live application or database.
+
+Locally, install the matching browser with `npx --no-install playwright install
+chromium`, serve `out/` with a static server, then run the command above. A successful
+build or component test is not a substitute for this browser check; environments
+that prohibit Chromium's required sockets cannot complete it.

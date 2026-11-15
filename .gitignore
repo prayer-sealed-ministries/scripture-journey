@@ -27,3 +27,6 @@ tsconfig.tsbuildinfo
 
 # isolated static export staging
 .static-build/
+
+# Local/CI browser diagnostics
+test-results/
