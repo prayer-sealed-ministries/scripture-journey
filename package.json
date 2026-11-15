@@ -12,7 +12,9 @@
     "test:coverage": "vitest run --coverage",
     "check:pwa-identity": "node scripts/check-pwa-identity.mjs",
     "setup:hooks": "node scripts/install-git-hooks.mjs",
-    "prepare": "node scripts/install-git-hooks.mjs"
+    "prepare": "node scripts/install-git-hooks.mjs",
+    "build:static": "node scripts/build-static.mjs",
+    "check:static": "node scripts/check-static-export.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",

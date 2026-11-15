@@ -24,3 +24,6 @@ pnpm-debug.log*
 *.bak2
 *.old
 tsconfig.tsbuildinfo
+
+# isolated static export staging
+.static-build/

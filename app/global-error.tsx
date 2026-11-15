@@ -18,7 +18,7 @@ export default function GlobalError({
   const isChunk = isChunkError(error)
 
   useEffect(() => {
-    if (isChunk) return
+    if (isChunk || process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true') return
     try {
       fetch('/api/client-error', {
         method: 'POST',

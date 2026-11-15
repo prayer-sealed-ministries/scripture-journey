@@ -38,3 +38,13 @@ jobs:
 
       - name: Test
         run: npm test
+
+      - name: Build static root-domain edition
+        run: npm run build:static && npm run check:static
+
+      - name: Retain static site for review (does not deploy)
+        uses: actions/upload-artifact@v4
+        with:
+          name: scripture-journey-static
+          path: out/
+          include-hidden-files: true

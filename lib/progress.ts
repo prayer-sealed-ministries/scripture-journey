@@ -176,6 +176,7 @@ export function getStreak(): { current: number; best: number } {
 /* ── Server sync (fire-and-forget when logged in) ── */
 
 function syncProgressToServer(slug: string, completed: boolean) {
+  if (process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true') return
   fetch('/api/progress', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -184,6 +185,7 @@ function syncProgressToServer(slug: string, completed: boolean) {
 }
 
 function syncQuizToServer(slug: string, result: { multipleChoice: boolean; fillInBlank?: boolean }) {
+  if (process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true') return
   fetch('/api/quiz-scores', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -193,7 +195,7 @@ function syncQuizToServer(slug: string, result: { multipleChoice: boolean; fillI
 
 /** Call on login to merge localStorage ↔ server */
 export async function syncOnLogin(): Promise<void> {
-  if (typeof window === 'undefined') return
+  if (process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true' || typeof window === 'undefined') return
 
   const completedSlugs = getCompletedLessons()
   const quizScores = getScoreMap()

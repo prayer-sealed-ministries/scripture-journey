@@ -78,7 +78,7 @@ export default function Header() {
             </span>
           )}
 
-          {status === 'loading' ? null : session?.user ? (
+          {process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true' ? null : status === 'loading' ? null : session?.user ? (
             <button
               onClick={() => signOut()}
               className="rounded-full border border-[#d8ccb8] px-3 py-1.5 text-xs font-medium text-[#7e622a] transition hover:bg-[#fbf7ee]"
@@ -138,7 +138,7 @@ export default function Header() {
             )}
 
             <div className="mt-1 px-3">
-              {status === 'loading' ? null : session?.user ? (
+              {process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true' ? null : status === 'loading' ? null : session?.user ? (
                 <button
                   onClick={() => { signOut(); setMenuOpen(false); }}
                   className="min-h-[44px] rounded-full border border-[#d8ccb8] px-4 py-2.5 text-xs font-medium text-[#7e622a] transition hover:bg-[#fbf7ee]"
