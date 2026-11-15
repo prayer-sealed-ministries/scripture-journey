@@ -236,3 +236,13 @@ The app is configured for Render; a GitHub Pages `CNAME` file is not used.
 5. Verify the homepage, lessons, copied lesson links, and sign-in on the new domain before redirecting the old address.
 
 Browser-local progress and installed PWAs belong to their original origin and do not automatically migrate. Keep the old domain accessible until any required progress migration has been handled.
+
+
+## Optional static hosting (no accounts)
+
+Run `npm run build:static` to export a GitHub Pages-ready root-domain version into
+`out/`. It keeps lessons and quizzes and stores progress only in each browser;
+there is no sign-in, database, or cross-device sync. The regular server build is
+unchanged. See [the cutover checklist](docs/GITHUB-PAGES.md) before switching any
+live domain or retiring Render. Existing cloud-only progress needs a separate
+handoff, and clearing browser storage removes local progress.

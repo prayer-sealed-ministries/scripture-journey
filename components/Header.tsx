@@ -23,6 +23,7 @@ export default function Header() {
   const [streakCount, setStreakCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setStreakCount(getStreak().current);
@@ -44,7 +45,10 @@ export default function Header() {
   useEffect(() => {
     if (!menuOpen) return;
     function handleOutside(e: PointerEvent) {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+      // The toggle owns its click; treating its pointerdown as outside would
+      // close the menu first and let the following click reopen it.
+      const target = e.target as Node;
+      if (menuRef.current && !menuRef.current.contains(target) && !menuButtonRef.current?.contains(target)) {
         setMenuOpen(false);
       }
     }
@@ -78,7 +82,7 @@ export default function Header() {
             </span>
           )}
 
-          {status === 'loading' ? null : session?.user ? (
+          {process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true' ? null : status === 'loading' ? null : session?.user ? (
             <button
               onClick={() => signOut()}
               className="rounded-full border border-[#d8ccb8] px-3 py-1.5 text-xs font-medium text-[#7e622a] transition hover:bg-[#fbf7ee]"
@@ -101,6 +105,7 @@ export default function Header() {
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button
+            ref={menuButtonRef}
             onClick={() => setMenuOpen((v) => !v)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -138,7 +143,7 @@ export default function Header() {
             )}
 
             <div className="mt-1 px-3">
-              {status === 'loading' ? null : session?.user ? (
+              {process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true' ? null : status === 'loading' ? null : session?.user ? (
                 <button
                   onClick={() => { signOut(); setMenuOpen(false); }}
                   className="min-h-[44px] rounded-full border border-[#d8ccb8] px-4 py-2.5 text-xs font-medium text-[#7e622a] transition hover:bg-[#fbf7ee]"

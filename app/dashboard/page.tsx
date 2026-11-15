@@ -152,7 +152,9 @@ export default function DashboardPage() {
         <div className="mt-4">
           <ProgressBar current={completed} total={total} />
         </div>
-        {status === 'unauthenticated' && (
+        {process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true' ? (
+          <p className="mt-3 text-sm text-[#4a4338]">Progress is saved only in this browser on this device. Clearing site data or using private browsing can erase it; it does not sync across devices.</p>
+        ) : status === 'unauthenticated' && (
           <p className="mt-3 text-sm text-[#4a4338]">
             <Link href="/auth/signin" className="font-semibold text-[#7e622a]">Sign in</Link> to save your progress across devices.
           </p>
