@@ -137,8 +137,11 @@ try {
   // Fresh, independent context exercises the production registration and cache code.
   await scenario('offline-visited-lesson', { serviceWorkers: 'allow' }, async (page, context) => {
     await page.goto(url())
-    await page.evaluate(() => navigator.serviceWorker.ready)
-    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller))
+    // Unlike a long-lived evaluate(serviceWorker.ready), Playwright's polling
+    // wait is rerun when controllerchange reloads and replaces the document.
+    // An activated controller proves this page is controlled, not merely that
+    // a registration exists. Keep the script URL and cache checks below.
+    await page.waitForFunction(() => navigator.serviceWorker.controller?.state === 'activated')
     // Registration may reload once on controllerchange; allow that load to settle.
     await page.waitForLoadState('networkidle')
     assert.equal(await page.evaluate(() => navigator.serviceWorker.controller.scriptURL), url('sw.js'))
